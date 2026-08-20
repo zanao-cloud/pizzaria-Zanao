@@ -1,0 +1,30 @@
+/*A palavra "Module" na composição do nome do arquivo é OBRIGATÓRIO para criarmos estilos personalizados
+ e que não tenha problemas em conflitos com nomes de classes, seletores etc.
+ */
+
+.menu {
+    background:
+    linear-gradient(
+        90deg,
+        #212529,
+        #343a40
+    );
+}
+
+.logo {
+
+    color: white !important;
+    font-weight: bold;
+    font-size: 14.rem;
+}
+
+.itemMenu {
+    color:
+    rgba(255, 255, 255, .8) !important;
+    transition: .3s;
+ }
+
+ .itemMenu:hover{
+    color: orange !important;
+    transform: translateY(-1px); 
+ }
