@@ -12,7 +12,7 @@ import ListarProduto from "../pages/ListarProduto/ListarProduto"
 import ListarCategoria from "../pages/ListarCategoria/ListarCategoria"
 import NovoProduto from "../pages/NovoProduto/NovoProduto"
 import ListarEstoque from "../pages/ListarEstoque/ListarEstoque"
-
+import EditarProduto from "../pages/EditarProduto/EditarProduto"
 const AppRoutes = () =>{
 
 
@@ -47,6 +47,10 @@ const AppRoutes = () =>{
              <Route
               path="/estoque"
               element={<ListarEstoque/>}
+             />
+              <Route
+              path="/produtos/editar/:id"
+              element={<EditarProduto/>}
              />
 
           </Routes>
