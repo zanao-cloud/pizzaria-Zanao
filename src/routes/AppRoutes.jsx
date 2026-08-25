@@ -11,8 +11,10 @@ import HomeFuncionario from "../pages/HomeFuncionario/HomeFuncionario"
 import ListarProduto from "../pages/ListarProduto/ListarProduto"
 import ListarCategoria from "../pages/ListarCategoria/ListarCategoria"
 import NovoProduto from "../pages/NovoProduto/NovoProduto"
+import NovaCategoria from "../pages/NovaCategoria/NovaCategoria"
 import ListarEstoque from "../pages/ListarEstoque/ListarEstoque"
 import EditarProduto from "../pages/EditarProduto/EditarProduto"
+import EditarCategoria from "../pages/EditarCategoria/EditarCategoria"
 const AppRoutes = () =>{
 
 
@@ -43,6 +45,11 @@ const AppRoutes = () =>{
               path="/Produtos/Novo"
               element={<NovoProduto/>}
              />
+             <Route
+              path="/Categorias/Novo"
+              element={<NovaCategoria/>}
+             />
+           
 
              <Route
               path="/estoque"
@@ -51,6 +58,10 @@ const AppRoutes = () =>{
               <Route
               path="/produtos/editar/:id"
               element={<EditarProduto/>}
+             />
+               <Route
+              path="/Categorias/editar/:id"
+              element={<EditarCategoria/>}
              />
 
           </Routes>
