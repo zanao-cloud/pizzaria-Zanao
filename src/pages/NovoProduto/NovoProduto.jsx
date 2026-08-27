@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react"
 
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario"
-import CredentialUser from "../../components/CredentialUser"
 import api from "../../services/api"
 
 const NovoProduto = () => {
@@ -9,7 +8,7 @@ const NovoProduto = () => {
     const [categorias, setCategorias] = useState([])
 const [categoriaId, setCategoriaId] = useState("")
 const [nome, setNome] = useState("")
-const [precoVenda, setPreco] = useState("")
+const [precoVenda, setPrecoVenda] = useState("")
 const [descricao, setDescricao] = useState("")
 
     useEffect( (  ) =>{
@@ -30,7 +29,7 @@ const enviarProduto = async (e) => {
 
     const produto = {
         nome: nome,
-        precoVenda: parseFloat(precoVenda),
+        precoVenda: parseFloat(precoVenda) || 0,
         tipo: "Grande",
         descricao: descricao,
         categoriaId: Number(categoriaId)
@@ -38,23 +37,23 @@ const enviarProduto = async (e) => {
 
     try {
         const response = await api.post("/produtos", produto, {
-            "Content-Type": "application/json"
+            headers: { "Content-Type": "application/json" },
         })
         alert(`${response.data.data.nome} cadastrado com sucesso!`)
         // Limpando os campos
         setNome("")
         setPrecoVenda("")
         setDescricao("")
+        setCategoriaId("")
     } catch (error) {
-        console.error(`Não foi possível salvar o produto ${error}`)
+        console.error("Não foi possível salvar o produto", error)
+        alert('Erro ao cadastrar produto. Verifique o console.')
     }
 }
 
 
-
     return (
         <div className = "container">
-            <CredentialUser title="Cadastro de Produto"/>
             <MenuFuncionario/>
             <form onSubmit={enviarProduto}className="container-fluid p-4"> 
                 <div className="mb-3"> 
@@ -67,16 +66,16 @@ const enviarProduto = async (e) => {
                       required 
                     /> 
                 </div> 
-                <div className="mb-3"> 
-                    <label className="form-label">Preço:</label> 
-                    <input 
-                      type="text" 
-                      className="form-control"
-                      value={precoVenda}
-                      onChange={(e) => setPreco(e.target.value)}
-                      required 
-                    /> 
-                </div> 
+                                <div className="mb-3"> 
+                                        <label className="form-label">Preço:</label> 
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={precoVenda}
+                                            onChange={(e) => setPrecoVenda(e.target.value)}
+                                            required 
+                                        /> 
+                                </div> 
                 <div className="mb-3"> 
                     <label className="form-label">Descrição:</label> 
                     <textarea 

@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react"
-import { Link, useNavigate} from "react-router-dom"
 import api from "../../services/api"
+import {Link, useNavigate} from "react-router-dom"
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario"
-import CredentialUser from "../../components/CredentialUser"
-import Modal from "../../components/Modal"
+ 
+ 
 const ListarProduto = () => {
  
  
@@ -16,9 +16,7 @@ const ListarProduto = () => {
 
 // iniciando uma variável produto com um array vazio "[]"
  const [produtos, setProdutos] = useState([])
- const [isModalOpen , setIsModalOpen] = useState (false)
- const [idProdutoAExcluir , setIdProdutoAExcluir] = useState (null)
- const navigate = useNavigate();
+
  useEffect(()=>{
  api 
  .get("/produtos")
@@ -33,26 +31,6 @@ const ListarProduto = () => {
  })
 
  }, [])
- const openModal = (id) => {
-  setIdProdutoAExcluir(id)
-  setIsModalOpen(true)
-}
-
-const deleteProduto = async () => {
-  try {
-    const response = await api.delete(`/produtos/${idProdutoAExcluir}`)
-    alert(response.data.message)
-
-    setProdutos((produtosAtuais) =>
-      produtosAtuais.filter(
-        (produto) => produto.id !== idProdutoAExcluir
-      )
-    )
-  } catch (error) {
-    console.error(`Não foi possível a exclusão do produto com o id ${idProdutoAExcluir}`)
-  }
-  setIsModalOpen(false)
-}
 /*
  const arrayProdutos = [
        {
@@ -80,7 +58,6 @@ const deleteProduto = async () => {
         <div className="container">
  
             <MenuFuncionario/>
-            <CredentialUser title="Lista de Produtos"/>
  
  
  
@@ -91,7 +68,10 @@ const deleteProduto = async () => {
  <th>Nome</th>
  <th>Preço</th>
  <th>Descrição</th>
- <th>Ações</th> {/* Nova coluna de Ações */}
+ <th>Categoria</th>
+ <th>Status</th>
+ <th>Ações</th>
+ {/* Nova coluna de Ações */}
  </tr>
  </thead>
  <tbody>
@@ -104,6 +84,7 @@ const deleteProduto = async () => {
  <td style={{ fontSize: "13px" }}>{produto.nome}</td>
  <td style={{ fontSize: "13px" }}>
  
+
   {
     new Intl.NumberFormat("pt-BR" ,  {
  
@@ -118,25 +99,24 @@ const deleteProduto = async () => {
  
  </td>
  <td style={{ fontSize: "13px" }}>{produto.descricao}</td>
- <td className="text-center fs-6" style={{ width: "100px" }}>
- {/* Botão de Editar */}
- <button
- className="btn btn-sm btn-primary me-2"
-    onClick={() =>
-    navigate(`/produtos/editar/${produto.id}`)
-    }
-    >
- <i className="fas fa-pencil-alt"></i>{" "}
- {/* Ícone de editar */}
- </button>
+ <td style={{ fontSize: "13px" }}>{produto.categoria.nome || ""}</td>
+ <td style={{ fontSize: "13px" }}>
+    {produto.codStatus === true ? (
+        <span className="badge bg-success">Ativo</span>
+    ) : (
+        <span className="badge bg-danger">Inativo</span>
+    )}
+ </td>
+ <td className="text-center fs-6" style={{ width: "120px" }}>
+
+    {/* Botão de Editar */}
+    <Link to={`/produtos/editar/${produto.id}`} className="btn btn-sm btn-primary me-2">
+        <i className="fas fa-pencil-alt"></i>
+    </Link>
  {/* Botão de Excluir */}
  <button
- className="btn btn-sm btn-danger"
-    onClick= {() => openModal (produto.id)}
-
-    >
- <i className="fas fa-trash-alt"></i>{" "}
- {/* Ícone de excluir */}
+ className="btn btn-sm btn-danger">
+ <i className="fas fa-trash-alt"></i>
  </button>
  </td>
  </tr>
@@ -163,11 +143,7 @@ Novo Produto
               </Link>
 
 </div>
-<Modal
-  isOpen={isModalOpen}
-  onClose={() => setIsModalOpen(false)}
-  onConfirm={deleteProduto}
-/>
+
         </div>
     )
 }
