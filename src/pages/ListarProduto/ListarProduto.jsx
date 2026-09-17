@@ -99,7 +99,7 @@ const ListarProduto = () => {
  
  </td>
  <td style={{ fontSize: "13px" }}>{produto.descricao}</td>
- <td style={{ fontSize: "13px" }}>{produto.categoria.nome || ""}</td>
+ <td style={{ fontSize: "13px" }}>{produto.categoria?.nome || ""}</td>
  <td style={{ fontSize: "13px" }}>
     {produto.codStatus === true ? (
         <span className="badge bg-success">Ativo</span>

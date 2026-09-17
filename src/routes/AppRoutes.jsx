@@ -12,6 +12,8 @@ import ListarProduto from "../pages/ListarProduto/ListarProduto"
 import ListarCategoria from "../pages/ListarCategoria/ListarCategoria"
 import NovoProduto from "../pages/NovoProduto/NovoProduto"
 import EditarProduto from "../pages/EditarProduto/EditarProduto"
+import EditarCategoria from "../pages/EditarCategoria/EditarCategoria"
+import NovaCategoria from "../pages/NovaCategoria/NovaCategoria"
 import ListarEstoque from "../pages/ListarEstoque/ListarEstoque"
 
 const AppRoutes = () =>{
@@ -44,6 +46,14 @@ const AppRoutes = () =>{
               <Route
               path="/Categorias"
               element={<ListarCategoria/>}
+             />
+             <Route
+              path="/categorias/editar/:id"
+              element={<EditarCategoria/>}
+             />
+             <Route
+              path="/Categorias/Novo"
+              element={<NovaCategoria/>}
              />
              <Route
               path="/Produtos/Novo"

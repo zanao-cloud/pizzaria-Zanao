@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import CredentialsUser from "../../components/CredentialUser";
+import CredentialUser from "../../components/CredentialUser";
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario";
 import api from "../../services/api";
  
@@ -57,7 +57,7 @@ function EditarCategoria() {
  
     <div className="container mt-4">
 <MenuFuncionario />
-<CredentialsUser title="Edição de Categoria" />
+<CredentialUser title="Edição de Categoria" />
  
       <form onSubmit={atualizarCategoria} className="bg-light p-4 rounded shadow">
 <div className="mb-3">

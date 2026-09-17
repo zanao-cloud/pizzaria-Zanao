@@ -20,7 +20,7 @@ const NovaCategoria = () => {
  
     try {
       const response = await api.post("/categorias", categoria, {
-        "Content-Type": "application/json"
+        headers: { "Content-Type": "application/json" }
       })
       alert(`${response.data.data.nome} cadastrada com sucesso!`)
       setNome("")

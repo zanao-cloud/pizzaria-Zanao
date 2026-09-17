@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react"; 
 import { useEffect } from "react"; 
 import { useParams, useNavigate } from "react-router-dom"; 
-import CredentialsUser from "../../components/CredentialUser"; 
+import CredentialUser from "../../components/CredentialUser"; 
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario"; 
 import api from "../../services/api"; 
  
@@ -88,7 +88,7 @@ const handleChangeCategoria = (e) => {
  
     <div className="container mt-4"> 
       <MenuFuncionario /> 
-      <CredentialsUser title="Edição de Produto" /> 
+      <CredentialUser title="Edição de Produto" /> 
  
       <form onSubmit={atualizarProduto} className="bg-light p-4 rounded shadow"> 
         {/* Nome do Produto */} 

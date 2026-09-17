@@ -33,7 +33,7 @@ return (
  <div style={customStyles}>
       <div style={pageInfo}> { title} </div>
       <div style={userInfo}>
-        Usuario; emailuser@gmail.com | Função: Funcionario
+        Usuario: emailuser@gmail.com | Função: Funcionario
       </div>
    </div>
 
